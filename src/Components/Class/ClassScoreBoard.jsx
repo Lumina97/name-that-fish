@@ -1,22 +1,20 @@
 import { Component } from "react";
 import "./styles/score-board.css";
 
-const incorrectCount = 0;
-const correctCount = 0;
-const answersLeft = ["trout", "salmon", "tuna", "shark"];
 export class ClassScoreBoard extends Component {
   render() {
+    const { correctGuess, wrongGuess, initialFishes } = this.props.fishGuesses;
     return (
       <div id="score-board">
-        <div>Incorrect 🔻: {incorrectCount}</div>
+        <div>Incorrect 🔻: {wrongGuess.length}</div>
         <div id="choices-left">
-          {answersLeft.map((answer) => (
-            <div key={answer} className="choice">
-              {answer}
+          {initialFishes.map((fish) => (
+            <div key={fish.name} className="choice">
+              {fish.name}
             </div>
           ))}
         </div>
-        <div>Correct ✅: {correctCount}</div>
+        <div>Correct ✅: {correctGuess.length}</div>
       </div>
     );
   }
