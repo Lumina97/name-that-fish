@@ -3,7 +3,7 @@ import "./styles/score-board.css";
 
 export class ClassScoreBoard extends Component {
   render() {
-    const { correctGuess, wrongGuess, initialFishes } = this.props.fishGuesses;
+    const { correctGuess, wrongGuess, initialFishes } = this.props.state;
     return (
       <div id="score-board">
         <div>Incorrect 🔻: {wrongGuess.length}</div>

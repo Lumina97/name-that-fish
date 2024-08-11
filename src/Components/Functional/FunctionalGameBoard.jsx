@@ -22,14 +22,6 @@ export function FunctionalGameBoard({ state, setState }) {
       ...prevState,
       initialFishes: tempArray,
     }));
-    //need to check temp array bc the state setter takes too long?
-    //not really sure why I cannot check the value right away after setting state
-    //Also some videos on debugging this stuff would be really helpful!
-    if (tempArray.length === 0)
-      setState((prevState) => ({
-        ...prevState,
-        gameFinished: true,
-      }));
   };
 
   const nextFishToName = state.initialFishes[0];

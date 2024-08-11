@@ -6,7 +6,6 @@ import { ClassFinalScore } from "./ClassFinalScore";
 
 export class ClassApp extends Component {
   state = {
-    isGameFinished: false,
     correctGuess: [],
     wrongGuess: [],
     initialFishes: [
@@ -50,26 +49,21 @@ export class ClassApp extends Component {
     }));
   };
 
-  setIsGameFinished = (booleanValue) => {
-    this.setState({ isGameFinished: booleanValue });
-  };
-
   render() {
     return (
       <>
         <>
-          <ClassScoreBoard fishGuesses={this.state} />
-          {!this.state.isGameFinished && (
+          <ClassScoreBoard state={this.state} />
+          {this.state.initialFishes.length > 0 && (
             <ClassGameBoard
-              fishGuesses={this.state}
+              state={this.state}
               addFishToRightGuess={this.addFishToRightGuess}
               addFishToWrongGuess={this.addFishToWrongGuess}
               setInitialArray={this.setInitialArray}
-              setIsGameFinished={this.setIsGameFinished}
             />
           )}
-          {this.state.isGameFinished && (
-            <ClassFinalScore fishGuesses={this.state} />
+          {this.state.initialFishes.length <= 0 && (
+            <ClassFinalScore state={this.state} />
           )}
         </>
       </>

@@ -2,7 +2,7 @@ import { Component } from "react";
 
 export class ClassFinalScore extends Component {
   render() {
-    const { correctGuess, wrongGuess } = this.props.fishGuesses;
+    const { correctGuess, wrongGuess } = this.props.state;
 
     return (
       <div id="final-score">

@@ -26,16 +26,17 @@ export function FunctionalApp() {
         url: Images.shark,
       },
     ],
-    gameFinished: false,
   });
 
   return (
     <>
       <FunctionalScoreBoard state={state} />
-      {!state.gameFinished && (
+      {state.initialFishes.length > 0 && (
         <FunctionalGameBoard state={state} setState={setState} />
       )}
-      {state.gameFinished && <FunctionalFinalScore state={state} />}
+      {state.initialFishes.length <= 0 && (
+        <FunctionalFinalScore state={state} />
+      )}
     </>
   );
 }

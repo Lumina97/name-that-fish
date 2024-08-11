@@ -7,14 +7,10 @@ export class ClassGameBoard extends Component {
   };
 
   checkGuessedValue = () => {
-    const {
-      addFishToRightGuess,
-      addFishToWrongGuess,
-      setInitialArray,
-      setIsGameFinished,
-    } = this.props;
+    const { addFishToRightGuess, addFishToWrongGuess, setInitialArray } =
+      this.props;
 
-    const { initialFishes } = this.props.fishGuesses;
+    const { initialFishes } = this.props.state;
 
     this.state.currentGuessText === initialFishes[0].name
       ? addFishToRightGuess()
@@ -22,12 +18,10 @@ export class ClassGameBoard extends Component {
 
     const tempArray = initialFishes.slice(1);
     setInitialArray(tempArray);
-
-    if (tempArray.length === 0) setIsGameFinished(true);
   };
 
   render() {
-    const nextFishToName = this.props.fishGuesses.initialFishes[0];
+    const nextFishToName = this.props.state.initialFishes[0];
 
     return (
       <div id="game-board">
