@@ -1,17 +1,21 @@
 import "./styles/score-board.css";
 
-export function FunctionalScoreBoard({ state }) {
+export function FunctionalScoreBoard({
+  correctGuesses,
+  incorrectGuesses,
+  remainingFishNames,
+}) {
   return (
     <div id="score-board">
-      <div>Incorrect 🔻: {state.wrongGuess.length}</div>
+      <div>Incorrect 🔻: {incorrectGuesses}</div>
       <div id="choices-left">
-        {state.initialFishes.map((fish) => (
-          <div key={fish.name} className="choice">
-            {fish.name}
+        {remainingFishNames.map((fish) => (
+          <div key={fish} className="choice">
+            {fish}
           </div>
         ))}
       </div>
-      <div>Correct ✅: {state.correctGuess.length}</div>
+      <div>Correct ✅: {correctGuesses}</div>
     </div>
   );
 }

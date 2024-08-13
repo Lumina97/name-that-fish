@@ -4,39 +4,58 @@ import { FunctionalFinalScore } from "./FunctionalFinalScore";
 import { useState } from "react";
 import { Images } from "../../assets/Images";
 
-export function FunctionalApp() {
-  const [state, setState] = useState({
-    correctGuess: [],
-    wrongGuess: [],
-    initialFishes: [
-      {
-        name: "trout",
-        url: Images.trout,
-      },
-      {
-        name: "salmon",
-        url: Images.salmon,
-      },
-      {
-        name: "tuna",
-        url: Images.tuna,
-      },
-      {
-        name: "shark",
-        url: Images.shark,
-      },
-    ],
-  });
+const initialFishes = [
+  {
+    name: "trout",
+    url: Images.trout,
+  },
+  {
+    name: "salmon",
+    url: Images.salmon,
+  },
+  {
+    name: "tuna",
+    url: Images.tuna,
+  },
+  {
+    name: "shark",
+    url: Images.shark,
+  },
+];
 
-  return (
-    <>
-      <FunctionalScoreBoard state={state} />
-      {state.initialFishes.length > 0 && (
-        <FunctionalGameBoard state={state} setState={setState} />
-      )}
-      {state.initialFishes.length <= 0 && (
-        <FunctionalFinalScore state={state} />
-      )}
-    </>
-  );
+export function FunctionalApp() {
+  const [correctGuesses, setCorrectGuesses] = useState(0);
+  const [incorrectGuesses, setIncorrectGuesses] = useState(0);
+  const currentFishIndex = correctGuesses + incorrectGuesses;
+
+  const showGameBoard = () => {
+    if (currentFishIndex <= initialFishes.length - 1) {
+      return (
+        <>
+          <FunctionalScoreBoard
+            correctGuesses={correctGuesses}
+            incorrectGuesses={incorrectGuesses}
+            remainingFishNames={initialFishes
+              .slice(currentFishIndex)
+              .map((fish) => fish.name)}
+          />
+          <FunctionalGameBoard
+            correctGuesses={correctGuesses}
+            incorrectGuesses={incorrectGuesses}
+            setCorrectGuesses={setCorrectGuesses}
+            setIncorrectGuesses={setIncorrectGuesses}
+            currentFish={initialFishes[currentFishIndex]}
+          />
+        </>
+      );
+    } else
+      return (
+        <FunctionalFinalScore
+          correctGuesses={correctGuesses}
+          totalFishes={initialFishes.length}
+        />
+      );
+  };
+
+  return <>{showGameBoard()}</>;
 }

@@ -3,18 +3,18 @@ import "./styles/score-board.css";
 
 export class ClassScoreBoard extends Component {
   render() {
-    const { correctGuess, wrongGuess, initialFishes } = this.props.state;
+    const { correctGuesses, incorrectGuesses, remainingFishNames } = this.props;
     return (
       <div id="score-board">
-        <div>Incorrect 🔻: {wrongGuess.length}</div>
+        <div>Incorrect 🔻: {incorrectGuesses}</div>
         <div id="choices-left">
-          {initialFishes.map((fish) => (
-            <div key={fish.name} className="choice">
-              {fish.name}
+          {remainingFishNames.map((fish) => (
+            <div key={fish} className="choice">
+              {fish}
             </div>
           ))}
         </div>
-        <div>Correct ✅: {correctGuess.length}</div>
+        <div>Correct ✅: {correctGuesses}</div>
       </div>
     );
   }

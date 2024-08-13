@@ -7,26 +7,21 @@ export class ClassGameBoard extends Component {
   };
 
   checkGuessedValue = () => {
-    const { addFishToRightGuess, addFishToWrongGuess, setInitialArray } =
+    const { addFishToRightGuess, addFishToWrongGuess, currentFish } =
       this.props;
 
-    const { initialFishes } = this.props.state;
-
-    this.state.currentGuessText === initialFishes[0].name
+    this.state.currentGuessText === currentFish.name
       ? addFishToRightGuess()
       : addFishToWrongGuess();
-
-    const tempArray = initialFishes.slice(1);
-    setInitialArray(tempArray);
   };
 
   render() {
-    const nextFishToName = this.props.state.initialFishes[0];
+    const { currentFish } = this.props;
 
     return (
       <div id="game-board">
         <div id="fish-container">
-          <img src={nextFishToName.url} alt={nextFishToName.name} />
+          <img src={currentFish.url} alt={currentFish.name} />
         </div>
         <form
           id="fish-guess-form"
